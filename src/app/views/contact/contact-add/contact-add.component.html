@@ -1,0 +1,93 @@
+<div class="body flex-grow-1 px-3">
+    <c-container >
+        <!-- <app-form-controls class="ng-star-inserted"> -->
+            <c-col class="col-12">
+                <c-card class="mb-4 card">
+                    <c-card-header class="card-header">
+                        <strong >Contact Create</strong>
+                    </c-card-header>
+                    <c-card-body class="card-body">
+                        <!-- <form cForm> -->
+                            <form #browserDefaultsForm="ngForm"
+                            (ngSubmit)="saveContact()"
+                            [gutter]="3"
+                            
+                            cForm
+                            cRow
+                            ngNativeValidate
+                      >
+                            <c-container>
+                                <c-row>
+                                  <c-col>
+                                    <div class="mb-3">
+                                        <label cLabel for="salutation">Salutation</label>
+                                            <select class="form-control" name="salutation" [(ngModel)]="contact.salutation" id="salutation" >
+                                                <option value=''>Select an item</option>
+                                                <option *ngFor="let key of keys" [value]="key" [label]="salutationLst[key]"></option>
+                                            </select>
+                                      </div>
+                                  </c-col>
+                                  <c-col>
+                                    <div class="mb-3">
+                                        <label cLabel for="firstname">First Name</label>
+                                        <input cFormControl  placeholder="First Name" type="string"
+                                        id="firstname"  required [(ngModel)]="contact.firstName" name="firstname"
+                                        />
+                                    </div>
+                                  </c-col>
+                                  <c-col>
+                                    <div class="mb-3">
+                                        <label cLabel for="lastname"> Last Name</label>
+                                        <input cFormControl  placeholder="Last Name" type="string" 
+                                        id="lastname"  required [(ngModel)]="contact.lastName" name="lastname"/>
+                                    </div>
+                                  </c-col>
+                                </c-row>
+                                <c-row>
+                                    <c-col>
+                                        <div class="mb-3">
+                                            <label cLabel for="displayname">Display Name</label>
+                                            <input cFormControl  placeholder="Display Name" type="string" 
+                                            id="displayname"  required [(ngModel)]="contact.displayName" name="displayname"/>
+                                        </div>
+                                    </c-col>
+                                </c-row>
+                                <c-row>
+                                    <c-col>
+                                        <div class="mb-3">
+                                            <label cLabel for="birthdate">Birth Date</label>
+                                            <input cFormControl placeholder="Birth Date" type="date" 
+                                            id="birthdate"  required [(ngModel)]="contact.birthDate" name="birthdate"/>
+                                        </div>
+                                    </c-col>
+                                    <c-col>
+                                        <div class="mb-3">
+                                            <label cLabel for="email">Email</label>
+                                            <input cFormControl placeholder="Email" type="email" 
+                                            id="email"  required [(ngModel)]="contact.email" name="email"/>
+                                        </div>
+                                    </c-col>
+                                    <c-col>
+                                        <div class="mb-3">
+                                            <label cLabel for="phonenumber">Phone Number</label>
+                                            <input cFormControl placeholder="phonenumber" type="string" 
+                                            id="phonenumber"  required [(ngModel)]="contact.phoneNumber" name="phonenumber"/>
+                                        </div>
+                                    </c-col>
+                                </c-row>
+                                <c-row>
+                                    <c-col>
+                                        <div class="mb-3 d-md-flex justify-content-md-end">
+                                            <button cButton color="success" type="submit" (click)="saveContact()">Save</button>
+                                        </div>
+                                    </c-col>
+                                </c-row>
+                              </c-container>                            
+                        </form>
+                    </c-card-body>
+                </c-card>
+            </c-col>
+    </c-container>
+</div>
+
+                        

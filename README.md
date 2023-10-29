@@ -1,1 +1,1 @@
-# angular16_basic_crud
+This is a angular 16 project which is build by angular 16 and core ui template used here.

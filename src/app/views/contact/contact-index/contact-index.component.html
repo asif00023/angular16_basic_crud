@@ -1,0 +1,52 @@
+<div class="body flex-grow-1 px-3">
+    <c-container >
+        <!-- <app-form-controls class="ng-star-inserted"> -->
+            <c-col class="col-12">
+                <c-card class="mb-4 card">
+                    <c-card-header class="card-header">
+                        <strong >Contact Lists</strong>
+                    </c-card-header>
+                    <c-card-body class="card-body">
+                        <table cTable hover class="table table-hover">
+                            <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Salutation</th>
+                              <th scope="col">First Name</th>
+                              <th scope="col">Last Name</th>
+                              <th scope="col">Display Name</th>
+                              <th scope="col">Birth Date</th>
+                              <th scope="col">Email</th>
+                              <th scope="col">Phone Number</th>
+                              
+                            </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let contct of contacts; let i = index" [class.active]="i == currentIndex"
+                              (click)="setActiveContact(contct, i)">
+                            <th scope="row">{{(i+1)}}</th>
+                            
+                            <td>{{getValueByKeyForNumberEnum(contct.salutation)}}
+
+                                
+                            </td>
+                            <td>{{contct.firstName}}</td>
+                            <td>{{contct.lastName}}</td>
+                            <td>{{contct.displayName}}</td>
+                            <td>{{contct.birthDate}}</td>
+                            <td>{{contct.email}}</td>
+                            <td>{{contct.phoneNumber}}</td>                            
+                            
+                            </tr>
+                            </tbody>
+                          </table>                          
+                    </c-card-body>
+                </c-card>
+            </c-col>
+        <!-- </app-form-controls> -->
+    </c-container>
+</div>
+<app-contact-details
+[viewMode]="true"
+[currentContact]="currentContact"
+></app-contact-details>

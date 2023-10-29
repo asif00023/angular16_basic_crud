@@ -1,0 +1,167 @@
+<div class="body flex-grow-1 px-3">
+  <c-toaster class="p-3" position="fixed" ></c-toaster>
+
+  
+  <c-container *ngIf="viewMode; else editable" >
+      <!-- <app-form-controls class="ng-star-inserted"> -->
+          <c-col class="col-12">
+              <c-card class="mb-4 card" >
+                  <c-card-header class="card-header">
+                      <strong >Contact Details</strong>
+                  </c-card-header>
+                  <c-card-body class="card-body">
+                      <div >
+                          <div *ngIf="currentContact.id">
+                            <c-row>
+                                <c-col>
+                                  <div class="mb-4">
+                                    <label class="label"><strong>Salutation:</strong></label> {{ getValueByKeyForNumberEnum(currentContact.salutation) }}
+                                  </div>
+                                </c-col>
+                                <c-col>  
+                                  <div class="mb-4">
+                                    <label><strong>First Name:</strong></label> {{ currentContact.firstName }}
+                                  </div>
+                                </c-col>
+                                <c-col>
+                                  <div class="mb-4">
+                                    <label><strong>Last Name:</strong></label> {{ currentContact.lastName }}
+                                  </div>
+                                </c-col>                              
+                            </c-row>
+                            <c-row>
+                              <c-col>
+                                <div class="mb-4">
+                                  <label><strong>Display Name:</strong></label> {{ currentContact.displayName }}
+                                </div>
+                              </c-col>
+                            </c-row>
+                            <c-row>
+                              <c-col>
+                                <div class="mb-4">
+                                  <label><strong>Birth Date:</strong></label> {{ currentContact.birthDate }}
+                                </div>
+                              </c-col>
+                              <c-col>
+                                <div class="mb-4">
+                                  <label><strong>Email:</strong></label> {{ currentContact.email }}
+                                </div>
+                              </c-col>
+                              <c-col>
+                                <div class="mb-4">
+                                  <label><strong>Phone Number:</strong></label> {{ currentContact.phoneNumber }}
+                                </div>
+                              </c-col>
+                            </c-row>
+                            <c-row>
+                              <c-col>
+                                <div class="mb-4" class="text-end">
+                                  <a class="text-end" routerLink="/contact/contact-details/{{ currentContact.id }}">
+                                  
+                                  <!-- routerLink="/contact/contact-add/{{ currentContact.id }}" -->
+                                  <fa-icon [icon]="faPenToSquare" class="fa-lg">Edit</fa-icon>
+                                  </a>&nbsp;
+                                  <!-- <fa-icon [icon]="faTrashCan" class="fa-lg">Delete</fa-icon> -->
+                                </div>
+                              </c-col>
+                            </c-row>
+                          </div>
+                        
+                          <div *ngIf="!currentContact">
+                            <br />
+                            <p>Please click on a Tutorial...</p>
+                          </div>
+                        </div>
+                  </c-card-body>
+              </c-card>
+          </c-col>
+  </c-container>
+  <ng-template #editable>
+    <div class="body flex-grow-1 px-3">
+      <c-container>
+            <c-col class="col-12">
+                <c-card class="mb-4 card" >
+                    <c-card-header class="card-header">
+                        <strong >Contact Details</strong>
+                    </c-card-header>
+                    <c-card-body class="card-body">
+                      <form cForm #browserDefaultsForm="ngForm"
+                      (ngSubmit)="updateTutorial()"
+                      [gutter]="3"
+                      
+                      cForm
+                      cRow
+                      ngNativeValidate>
+                        <c-row>
+                          <c-col>
+                            <div class="mb-3">
+                                <label cLabel for="salutation">Salutation</label>
+                                <select class="form-control" name="salutation" [(ngModel)]="currentContact.salutation" id="salutation" >
+                                    <option value=''>Select an item</option>
+                                    <option *ngFor="let key of keys" [value]="key" [label]="salutationLst[key]"></option>
+                                </select>
+                            </div>
+                          </c-col>
+                          <c-col>
+                            <div class="mb-3">
+                              <label cLabel for="firstname">First Name</label>
+                              <input cFormControl  placeholder="First Name" type="string"
+                              id="firstname"  required [(ngModel)]="currentContact.firstName" name="firstname"/>
+                            </div>
+                          </c-col>
+                          <c-col>
+                            <div class="mb-3">
+                                <label cLabel for="lastname"> Last Name</label>
+                                <input cFormControl  placeholder="Last Name" type="string" 
+                                id="lastname"  required [(ngModel)]="currentContact.lastName" name="lastname"/>
+                            </div>
+                          </c-col>
+                        </c-row>
+                        <c-row>
+                          <c-col>
+                              <div class="mb-3">
+                                  <label cLabel for="displayname">Display Name</label>
+                                  <input cFormControl  placeholder="Display Name" type="string" 
+                                  id="displayname"  required [(ngModel)]="currentContact.displayName" name="displayname"/>
+                              </div>
+                          </c-col>
+                      </c-row>
+                        <c-row>
+                          <c-col>
+                              <div class="mb-3">
+                                  <label cLabel for="birthdate">Birth Date</label>
+                                  <input cFormControl placeholder="Birth Date" type="date" 
+                                  id="birthdate"  required [(ngModel)]="currentContact.birthDate" name="birthdate"/>
+                              </div>
+                          </c-col>
+                          <c-col>
+                              <div class="mb-3">
+                                  <label cLabel for="email">Email</label>
+                                  <input cFormControl placeholder="Email" type="email" 
+                                  id="email"  required [(ngModel)]="currentContact.email" name="email"/>
+                              </div>
+                          </c-col>
+                          <c-col>
+                              <div class="mb-3">
+                                  <label cLabel for="phonenumber">Phone Number</label>
+                                  <input cFormControl placeholder="phonenumber" type="string" 
+                                  id="phonenumber"  required [(ngModel)]="currentContact.phoneNumber" name="phonenumber"/>
+                              </div>
+                          </c-col>
+                      </c-row>
+                      <c-row>
+                          <c-col>
+                              <div class="mb-3 d-md-flex justify-content-md-end">
+                                  <button cButton color="success" type="submit" (click)="updateTutorial()">Save</button>
+                              </div>
+                          </c-col>
+                      </c-row>    
+                      </form>
+                    </c-card-body>
+                </c-card>
+            </c-col>
+      </c-container>
+    </div>
+  </ng-template>
+  
+</div>                        
